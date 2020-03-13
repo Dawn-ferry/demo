@@ -1,3 +1,5 @@
+// 该文件相当于webpack.config.js，所有有关wbp的配置都在这里配置
+// 模块导出
 module.exports = {
     devServer: {
         // 自动打开网页

@@ -8,6 +8,15 @@ import './styles/iconfont.css'
 import 'lib-flexible'
 // 导入路由对象
 import router from './router'
+
+// 全局组件
+import hmheader from './components/hmheader.vue'
+import hmlogo from './components/hmlogo.vue'
+import hmbutton from './components/hmbutton.vue'
+Vue.component("hm-header", hmheader)
+Vue.component("hm-logo", hmlogo)
+Vue.component("hm-button", hmbutton)
+
 Vue.config.productionTip = false
 
 new Vue({

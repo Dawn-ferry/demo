@@ -2,7 +2,6 @@
   <div>
     <hm-header>登录</hm-header>
     <hm-logo></hm-logo>
-
     <hm-input
       type="text"
       placeholder="用户名"
@@ -28,8 +27,6 @@ export default {
     login() {
       const aa = this.$refs.username.validate(this.username)
       const bb = this.$refs.password.validate(this.password)
-      // console.log(this.$refs.username)
-      // console.log(aa, bb)
       if (!aa) {
         return
       }

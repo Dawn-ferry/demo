@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- 
+      事件循环  event-loop 
+      ajax 定时器 事件监听 node读写文件 都是异步代码
+    -->
+  </body>
+  <script>
+    // 异步代码的实例
+    /*
+    js是单线程的，
+    首先处理的是同步的代码，遇到异步代码会将代码放在游览器【多线程】，游览器把处理后的结果放在任务队列，等js处理完同步代码在任务队列中取
+    console.log(1)
+    console.log(4)
+    任务队列:按文件执行的速度
+    setTimeout(() => {
+    console.log(2)
+    }, 0)
+    setTimeout(() => {
+      console.log(3)
+    }, 100)
+
+    */
+    console.log(1)
+
+    setTimeout(() => {
+      console.log(2)
+    }, 0)
+
+    setTimeout(() => {
+      console.log(3)
+    }, 100)
+
+    console.log(4)
+    /* -------------------------------------------------------- */
+    // 说明： 异步代码都会伴随着回调函数
+    // 回调函数实例：
+    function fn(a) {
+      console.log(a)
+      console.log('sss')
+      a()
+    }
+    fn(function() {
+      console.log('这是个回调函数')
+    })
+    // setTimeout(function() {
+    //     console.log('123')
+    //   }, 1000)
+
+    //   div.addEventListener('click', function() {})
+
+    //   $.ajax({
+    //     url: '',
+    //     type: 'get',
+    //     success: function() {}
+    //   })
+  </script>
+</html>

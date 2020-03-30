@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <script src="lodash.js"></script>
+    <script>
+      var input = document.querySelector('input')
+      // 函数的防抖
+      input.oninput = _.debounce(function() {
+        console.log('正在输入')
+      }, 1000)
+      // 函数的节流
+      input.oninput = _.throttle(function() {
+        console.log('正在输入')
+      }, 1000)
+    </script>
+  </body>
+</html>

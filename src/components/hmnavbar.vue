@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+  <div class="nav" @click="clickfn">
     <div class="left">{{ title }}</div>
     <div class="center"></div>
     <div class="right">
@@ -11,7 +11,12 @@
 
 <script>
 export default {
-  props: ['title', 'content']
+  props: ['title', 'content'],
+  methods: {
+    clickfn() {
+      this.$emit('click')
+    }
+  }
 }
 </script>
 

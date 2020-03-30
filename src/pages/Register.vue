@@ -36,7 +36,7 @@
 <script>
 export default {
   methods: {
-    register() {
+    async register() {
       // 校验拦截，避免了重复的请求
       const aa = this.$refs.username.validate(this.username)
       const bb = this.$refs.password.validate(this.password)
@@ -45,7 +45,7 @@ export default {
         return
       }
       // 发送请求
-      this.$axios({
+      const res = await this.$axios({
         method: 'post',
         url: '/register',
         data: {
@@ -53,21 +53,20 @@ export default {
           nickname: this.nickname,
           password: this.password
         }
-      }).then(res => {
-        console.log(res.data)
-        if (res.data.statusCode === 200) {
-          this.$toast.success(res.data.message)
-          this.$router.push({
-            name: 'login',
-            // 信息暴露
-            // query: { username: this.username, password: this.password }
-            // 使用params传递参数，必须使用命名路由
-            params: { username: this.username, password: this.password }
-          })
-        } else {
-          this.$toast.success(res.data.message)
-        }
       })
+      console.log(res.data)
+      if (res.data.statusCode === 200) {
+        this.$toast.success(res.data.message)
+        this.$router.push({
+          name: 'login',
+          // 信息暴露
+          // query: { username: this.username, password: this.password }
+          // 使用params传递参数，必须使用命名路由
+          params: { username: this.username, password: this.password }
+        })
+      } else {
+        this.$toast.success(res.data.message)
+      }
     }
   },
 

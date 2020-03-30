@@ -24,7 +24,7 @@ header {
   display: flex;
   border-bottom: 1px solid #ccc;
   text-align: center;
-  background-color: skyblue;
+  // background-color: skyblue;
   .left,
   .right {
     width: 30px;

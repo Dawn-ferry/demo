@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+  </body>
+  <script>
+    var input = document.querySelector('input')
+    // input.oninput = function() {
+    //   console.log('正在输入')
+    // }
+    // 优化
+    var timer
+    input.oninput = function() {
+      if (timer) {
+        clearInterval(timer)
+      }
+      timer = setTimeout(function() {
+        console.log('正在输入')
+      }, 1000)
+    }
+  </script>
+</html>

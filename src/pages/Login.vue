@@ -28,46 +28,55 @@
 <script>
 export default {
   methods: {
-    login() {
-      const aa = this.$refs.username.validate(this.username)
-      const bb = this.$refs.password.validate(this.password)
+    async login() {
+      const aa = this.$refs.username.validate(this.username);
+      const bb = this.$refs.password.validate(this.password);
       if (!aa) {
-        return
+        return;
       }
       if (!bb) {
-        return
+        return;
       }
-      this.$axios({
-        method: 'post',
-        url: '/login',
+
+      const res = await this.$axios({
+        method: "post",
+        url: "/login",
         data: {
           username: this.username,
           password: this.password
         }
-      }).then(res => {
-        console.log(res.data)
-        if (res.data.statusCode === 200) {
-          this.$toast.success(res.data.message)
-          this.$router.push('/user')
+      });
+      // console.log(res.data)
+      let { statusCode, data, message } = res.data;
+      if (res.data.statusCode === 200) {
+        this.$toast.success(message);
+        // 在跳转之前存储信息,登录保持
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user_id", data.user.id);
+        // 跳转，回跳
+        if (this.$route.params.back) {
+          this.$router.back();
         } else {
-          this.$toast.success(res.data.message)
+          this.$router.push("/user");
         }
-      })
+      } else {
+        this.$toast.success(message);
+      }
     }
   },
   data() {
     return {
-      username: '',
-      password: ''
-    }
+      username: "",
+      password: ""
+    };
   },
   // 在初始化数据之前拿注册的数据
   created() {
-    console.log(this.$route)
-    this.username = this.$route.params.username
-    this.password = this.$route.params.password
+    console.log(this.$route);
+    this.username = this.$route.params.username;
+    this.password = this.$route.params.password;
   }
-}
+};
 </script>
 <style lang="less" scoped>
 .go-Reg {
